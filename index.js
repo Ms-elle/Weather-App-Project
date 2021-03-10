@@ -22,6 +22,20 @@ function formatDate(date) {
   return `${day} @ ${hours}:${minutes}`;
 }
 
+let apiKey = "d56bb5a206f2cbf907ca9677eab33e96";
+let city = "Sydney";
+let apiUrl =
+  `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+
+  function showTemperature(response) {
+  console.log(response);
+  let temperature = Math.round(response.data.main.temp);
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = `It is ${temperature} in ${city}`;
+}
+axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+
+
 function displayWeatherCondition(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature").innerHTML = Math.round(
@@ -39,7 +53,7 @@ function displayWeatherCondition(response) {
 function searchCity(city) {
   let apiKey = "d56bb5a206f2cbf907ca9677eab33e96";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q
-  =${city}&appid=${apiKey}&units=metric`;
+  =${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -55,7 +69,7 @@ function showPosition(position) {
   lat=${position.coords.latitude}&lon=${position.coords.longitude}
   &appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
-}
+} 
 
 function getCurrentLocation(event) {
   event.preventDefault();
