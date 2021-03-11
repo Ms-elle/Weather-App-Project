@@ -23,12 +23,11 @@ function formatDate(date) {
 }
 
 let apiKey = "d56bb5a206f2cbf907ca9677eab33e96";
-let city = "Sydney";
+let city = "Coulsdon";
 let apiUrl =
   `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
 
   function showTemperature(response) {
-  console.log(response);
   let temperature = Math.round(response.data.main.temp);
   let h1 = document.querySelector("h1");
   h1.innerHTML = `It is ${temperature} in ${city}`;
@@ -52,8 +51,7 @@ function displayWeatherCondition(response) {
 
 function searchCity(city) {
   let apiKey = "d56bb5a206f2cbf907ca9677eab33e96";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q
-  =${city}&appid=${apiKey}&units=${units}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
   axios.get(apiUrl).then(displayWeatherCondition);
 }
 
@@ -65,9 +63,7 @@ function handleSubmit(event) {
 
 function showPosition(position) {
   let apiKey = "d56bb5a206f2cbf907ca9677eab33e96";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?
-  lat=${position.coords.latitude}&lon=${position.coords.longitude}
-  &appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherCondition);
 } 
 
@@ -80,7 +76,7 @@ let dateElement = document.querySelector("#date");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 
-let searchForm = document.querySelector("#search-form");
+let searchForm = document.querySelector("#search-city");
 searchForm.addEventListener("submit", handleSubmit);
 
 let currentLocationButton = document.querySelector("#current-location-button");
